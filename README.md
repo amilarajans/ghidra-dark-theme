@@ -1,19 +1,30 @@
 # Ghidra dark theme (WIP)
+[![Java CI with Gradle](https://github.com/amilarajans/ghidra-dark-theme/actions/workflows/gradle.yml/badge.svg)](https://github.com/amilarajans/ghidra-dark-theme/actions/workflows/gradle.yml)
 
-if you are building the project download the following libraries to the lib folder
+Want to build the plugin just run gradle.
 
-https://repo1.maven.org/maven2/com/formdev/flatlaf/1.1.2/flatlaf-1.1.2.jar
+Here are some screenshots of the current UI.
 
-https://repo1.maven.org/maven2/com/formdev/flatlaf-intellij-themes/1.1.2/flatlaf-intellij-themes-1.1.2.jar
+## Dark theme (WIP)
 
+![](https://github.com/amilarajans/ghidra-dark-theme/blob/main/images/ghidra-dark-theme.png?raw=true)
 
+## Dark theme options
 
-# Build the plugin
+![](https://github.com/amilarajans/ghidra-dark-theme/blob/main/images/ghidra-dark-theme-options.png?raw=true)
 
-1. add downloaded jar files to the class path configuration
+## Dark theme unified title bar
 
-2. build and get the zip archive in the dist folder
+![](https://github.com/amilarajans/ghidra-dark-theme/blob/main/images/ghidra-dark-theme-unified-title-bar.png?raw=true)
 
+## Dark theme embedded menu bar
 
+![](https://github.com/amilarajans/ghidra-dark-theme/blob/main/images/ghidra-dark-theme-embedded-menu-bar.png?raw=true)
 
-I will add prebuild plugin archives ASAP
+## Dark theme code browser (WIP)
+
+![](https://github.com/amilarajans/ghidra-dark-theme/blob/main/images/ghidra-dark-theme-code-browser-wip.png?raw=true)
+
+## Dark theme script manager (WIP)
+
+![](https://github.com/amilarajans/ghidra-dark-theme/blob/main/images/ghidra-dark-theme-script-manager-wip.png?raw=true)
