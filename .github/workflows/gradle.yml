@@ -38,21 +38,31 @@ jobs:
         run: |
           ./gradlew
           plugin_date=$(find dist -name '*.zip' | awk -F '_' '{print $4}')
-          echo "ASSET_NAME=$(find dist -name '*.zip')" >> $GITHUB_ENV
+          echo "ASSET_PATH=$(find dist -name '*.zip')" >> $GITHUB_ENV
+          echo "ASSET_NAME=$(find dist -name '*.zip' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
           last_tag=$(git tag -l "$plugin_date.*" | tail -n 1)
           if [ ! -z "$last_tag" ]; then
               echo "$last_tag" | awk -F '.' '{print "PLUGIN_TAG=" $1 "." $2+1}' >> $GITHUB_ENV
           else
               echo "PLUGIN_TAG=$plugin_date.0" >> $GITHUB_ENV
           fi
-      - name: List all files
-        run: |
-          ls $PWD
+      - name: release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: ${{ env.PLUGIN_TAG }}
+          tag_name: ${{ env.PLUGIN_TAG }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Upload to Releases
         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: svenstaro/upload-release-action@v2
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ env.ASSET_NAME }}
-          tag: ${{ env.PLUGIN_TAG }}
-          file_glob: true
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.ASSET_PATH }}
+          asset_name: ${{ env.ASSET_NAME }}
+          asset_content_type: application/zip
