@@ -29,10 +29,13 @@ jobs:
         run: chmod +x gradlew
       - name: Set up Ghidra
         run: |
+          current_dir=$PWD
+          cd ..
           curl -O "https://ghidra-sre.org/ghidra_${GHIDRA_VERSION}_PUBLIC_${GHIDRA_DATE}.zip"
           unzip -q "ghidra_${GHIDRA_VERSION}_PUBLIC_${GHIDRA_DATE}.zip"
           echo "GHIDRA_INSTALL_DIR=$PWD/ghidra_${GHIDRA_VERSION}_PUBLIC" >> $GITHUB_ENV
           rm "ghidra_${GHIDRA_VERSION}_PUBLIC_${GHIDRA_DATE}.zip"
+          cd $current_dir
         working-directory: ${{ env.TMPDIR }}
       - name: Build plugin with Gradle
         run: |
